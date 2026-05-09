@@ -1,0 +1,126 @@
+2026-05-09 22:12:41 | INFO     | main                      | Pipeline: starting | feeds=7 | days=7 | top=12
+2026-05-09 22:12:41 | INFO     | main                      | Fetcher: starting | feeds=7 | max_age_days=7
+2026-05-09 22:12:41 | INFO     | fetcher                   | Fetcher: keeping only articles from last 7 days (cutoff=2026-05-02T16:42:41.815421+00:00)
+2026-05-09 22:12:43 | INFO     | fetcher                   | [OpenAI Blog] Fetched 16 articles
+2026-05-09 22:12:43 | INFO     | fetcher                   | [Hugging Face] Fetched 2 articles
+2026-05-09 22:12:44 | WARNING  | fetcher                   | [Google DeepMind] Feed has parse issues: document declared as us-ascii, but parsed as utf-8
+2026-05-09 22:12:44 | INFO     | fetcher                   | [Google DeepMind] Fetched 1 articles
+2026-05-09 22:12:45 | INFO     | fetcher                   | [Cloudflare] Fetched 3 articles
+2026-05-09 22:12:45 | INFO     | fetcher                   | [Stripe] Fetched 0 articles
+2026-05-09 22:12:47 | INFO     | fetcher                   | [freeCodeCamp] Fetched 6 articles
+2026-05-09 22:12:48 | INFO     | fetcher                   | [Dev.to AI] Fetched 10 articles
+2026-05-09 22:12:48 | INFO     | fetcher                   | Fetcher done. 7 feeds OK, 0 failed. Total articles: 38
+2026-05-09 22:12:48 | INFO     | main                      | Fetcher: done in 6.5s | articles=38
+2026-05-09 22:12:48 | INFO     | main                      | Deduplicator: checking 38 articles against SQLite
+2026-05-09 22:12:48 | INFO     | deduplicator              | Deduplicator: 38 total, 0 already seen, 38 new
+2026-05-09 22:12:48 | INFO     | main                      | Deduplicator: done in 0.0s | new=38 dropped=0
+2026-05-09 22:12:48 | INFO     | main                      | Shortlister: scoring 38 articles | limit=50
+2026-05-09 22:12:48 | INFO     | main                      | Shortlister: done in 0.0s | shortlisted=38
+2026-05-09 22:12:48 | INFO     | main                      | Ranker: sending 38 articles to Ollama in one batch
+2026-05-09 22:12:48 | INFO     | ranker                    | Ranker: starting batch ranking for 38 articles
+2026-05-09 22:12:48 | INFO     | ranker                    | Ranker: batch 1/1 — 38 articles
+2026-05-09 22:12:48 | INFO     | ranker                    | Ranker: Ollama call attempt 1/2
+2026-05-09 22:13:44 | INFO     | ranker                    | Ranker: batch 1 done — 38/38 ranked by LLM
+2026-05-09 22:13:44 | INFO     | ranker                    | Ranker: complete in 56.1s — 38/38 by LLM, 0 by heuristic
+2026-05-09 22:13:44 | INFO     | main                      | Ranker: done in 56.1s | llm=38 heuristic=0
+2026-05-09 22:13:44 | INFO     | main                      | Pipeline stats: {'total_fetched': 38, 'total_new': 38, 'shortlisted': 38, 'llm_ranked': 38, 'top_n': 12, 'total_seen': 0}
+2026-05-09 22:13:44 | WARNING  | mailer                    | Mailer: credentials not set. Export DIGEST_EMAIL_FROM, DIGEST_EMAIL_TO, DIGEST_APP_PASSWORD to send real email.
+2026-05-09 22:13:44 | INFO     | mailer                    | Mailer: printing email preview to console instead
+2026-05-09 22:13:44 | INFO     | deduplicator              | Deduplicator: marked 12 URLs as seen
+2026-05-09 22:13:44 | INFO     | main                      | Deduplicator: marked 12 URLs as seen in SQLite
+2026-05-09 22:13:44 | INFO     | main                      | Pipeline: finished in 63.0s
+2026-05-09 22:16:51 | INFO     | main                      | Pipeline: starting | feeds=7 | days=7 | top=12
+2026-05-09 22:16:51 | INFO     | main                      | Fetcher: starting | feeds=7 | max_age_days=7
+2026-05-09 22:16:51 | INFO     | fetcher                   | Fetcher: keeping only articles from last 7 days (cutoff=2026-05-02T16:46:51.591411+00:00)
+2026-05-09 22:16:53 | INFO     | fetcher                   | [OpenAI Blog] Fetched 16 articles
+2026-05-09 22:16:53 | INFO     | fetcher                   | [Hugging Face] Fetched 2 articles
+2026-05-09 22:16:54 | WARNING  | fetcher                   | [Google DeepMind] Feed has parse issues: document declared as us-ascii, but parsed as utf-8
+2026-05-09 22:16:54 | INFO     | fetcher                   | [Google DeepMind] Fetched 1 articles
+2026-05-09 22:16:55 | INFO     | fetcher                   | [Cloudflare] Fetched 3 articles
+2026-05-09 22:16:55 | INFO     | fetcher                   | [Stripe] Fetched 0 articles
+2026-05-09 22:16:57 | INFO     | fetcher                   | [freeCodeCamp] Fetched 6 articles
+2026-05-09 22:16:57 | INFO     | fetcher                   | [Dev.to AI] Fetched 10 articles
+2026-05-09 22:16:57 | INFO     | fetcher                   | Fetcher done. 7 feeds OK, 0 failed. Total articles: 38
+2026-05-09 22:16:57 | INFO     | main                      | Fetcher: done in 5.6s | articles=38
+2026-05-09 22:16:57 | INFO     | main                      | Deduplicator: checking 38 articles against SQLite
+2026-05-09 22:16:57 | INFO     | deduplicator              | Deduplicator: 38 total, 12 already seen, 26 new
+2026-05-09 22:16:57 | INFO     | main                      | Deduplicator: done in 0.0s | new=26 dropped=12
+2026-05-09 22:16:57 | INFO     | main                      | Shortlister: scoring 26 articles | limit=50
+2026-05-09 22:16:57 | INFO     | main                      | Shortlister: done in 0.0s | shortlisted=26
+2026-05-09 22:16:57 | INFO     | main                      | Ranker: sending 26 articles to Ollama in one batch
+2026-05-09 22:16:57 | INFO     | ranker                    | Ranker: starting batch ranking for 26 articles
+2026-05-09 22:16:57 | INFO     | ranker                    | Ranker: batch 1/1 — 26 articles
+2026-05-09 22:16:57 | INFO     | ranker                    | Ranker: Ollama call attempt 1/2
+2026-05-09 22:17:31 | INFO     | ranker                    | Ranker: batch 1 done — 26/26 ranked by LLM
+2026-05-09 22:17:31 | INFO     | ranker                    | Ranker: complete in 33.8s — 26/26 by LLM, 0 by heuristic
+2026-05-09 22:17:31 | INFO     | main                      | Ranker: done in 33.8s | llm=26 heuristic=0
+2026-05-09 22:17:31 | INFO     | main                      | Pipeline stats: {'total_fetched': 38, 'total_new': 26, 'shortlisted': 26, 'llm_ranked': 26, 'top_n': 12, 'total_seen': 12}
+2026-05-09 22:17:31 | INFO     | mailer                    | Mailer: connecting to smtp.gmail.com:587
+2026-05-09 22:17:34 | INFO     | mailer                    | Mailer: ✅ email sent to nandani.khushali@gmail.com | subject='🧠 Dev Digest — 12 articles · 09 May 2026'
+2026-05-09 22:17:34 | INFO     | deduplicator              | Deduplicator: marked 12 URLs as seen
+2026-05-09 22:17:34 | INFO     | main                      | Deduplicator: marked 12 URLs as seen in SQLite
+2026-05-09 22:17:34 | INFO     | main                      | Pipeline: finished in 43.1s
+2026-05-09 22:24:25 | INFO     | main                      | Pipeline: starting | feeds=7 | days=7 | top=12
+2026-05-09 22:24:25 | INFO     | main                      | Fetcher: starting | feeds=7 | max_age_days=7
+2026-05-09 22:24:25 | INFO     | fetcher                   | Fetcher: keeping only articles from last 7 days (cutoff=2026-05-02T16:54:25.108198+00:00)
+2026-05-09 22:24:26 | INFO     | fetcher                   | [OpenAI Blog] Fetched 16 articles
+2026-05-09 22:24:27 | INFO     | fetcher                   | [Hugging Face] Fetched 2 articles
+2026-05-09 22:24:28 | WARNING  | fetcher                   | [Google DeepMind] Feed has parse issues: document declared as us-ascii, but parsed as utf-8
+2026-05-09 22:24:28 | INFO     | fetcher                   | [Google DeepMind] Fetched 1 articles
+2026-05-09 22:24:28 | INFO     | fetcher                   | [Cloudflare] Fetched 3 articles
+2026-05-09 22:24:28 | INFO     | fetcher                   | [Stripe] Fetched 0 articles
+2026-05-09 22:24:30 | INFO     | fetcher                   | [freeCodeCamp] Fetched 6 articles
+2026-05-09 22:24:31 | INFO     | fetcher                   | [Dev.to AI] Fetched 9 articles
+2026-05-09 22:24:31 | INFO     | fetcher                   | Fetcher done. 7 feeds OK, 0 failed. Total articles: 37
+2026-05-09 22:24:31 | INFO     | main                      | Fetcher: done in 6.0s | articles=37
+2026-05-09 22:24:31 | INFO     | main                      | Deduplicator: checking 37 articles against SQLite
+2026-05-09 22:24:31 | INFO     | deduplicator              | Deduplicator: 37 total, 22 already seen, 15 new
+2026-05-09 22:24:31 | INFO     | main                      | Deduplicator: done in 0.0s | new=15 dropped=22
+2026-05-09 22:24:31 | INFO     | main                      | Shortlister: scoring 15 articles | limit=50
+2026-05-09 22:24:31 | INFO     | main                      | Shortlister: done in 0.0s | shortlisted=15
+2026-05-09 22:24:31 | INFO     | main                      | Ranker: sending 15 articles to Ollama in one batch
+2026-05-09 22:24:31 | INFO     | ranker                    | Ranker: starting batch ranking for 15 articles
+2026-05-09 22:24:31 | INFO     | ranker                    | Ranker: batch 1/1 — 15 articles
+2026-05-09 22:24:31 | INFO     | ranker                    | Ranker: Ollama call attempt 1/2
+2026-05-09 22:24:53 | INFO     | ranker                    | Ranker: batch 1 done — 15/15 ranked by LLM
+2026-05-09 22:24:53 | INFO     | ranker                    | Ranker: complete in 22.6s — 15/15 by LLM, 0 by heuristic
+2026-05-09 22:24:53 | INFO     | main                      | Ranker: done in 22.6s | llm=15 heuristic=0
+2026-05-09 22:24:53 | INFO     | main                      | Pipeline stats: {'total_fetched': 37, 'total_new': 15, 'shortlisted': 15, 'llm_ranked': 15, 'top_n': 12, 'total_seen': 24}
+2026-05-09 22:24:53 | INFO     | mailer                    | Mailer: connecting to smtp.gmail.com:587
+2026-05-09 22:24:57 | INFO     | mailer                    | Mailer: ✅ email sent to 2 recipients | subject='🧠 Dev Digest — 12 articles · 09 May 2026'
+2026-05-09 22:24:57 | INFO     | deduplicator              | Deduplicator: marked 12 URLs as seen
+2026-05-09 22:24:57 | INFO     | main                      | Deduplicator: marked 12 URLs as seen in SQLite
+2026-05-09 22:24:57 | INFO     | main                      | Pipeline: finished in 32.5s
+2026-05-09 22:30:22 | INFO     | main                      | Pipeline: starting | feeds=7 | days=7 | top=12
+2026-05-09 22:30:22 | INFO     | main                      | Fetcher: starting | feeds=7 | max_age_days=7
+2026-05-09 22:30:22 | INFO     | fetcher                   | Fetcher: keeping only articles from last 7 days (cutoff=2026-05-02T17:00:22.848841+00:00)
+2026-05-09 22:30:24 | INFO     | fetcher                   | [OpenAI Blog] Fetched 16 articles
+2026-05-09 22:30:24 | INFO     | fetcher                   | [Hugging Face] Fetched 2 articles
+2026-05-09 22:30:25 | WARNING  | fetcher                   | [Google DeepMind] Feed has parse issues: document declared as us-ascii, but parsed as utf-8
+2026-05-09 22:30:25 | INFO     | fetcher                   | [Google DeepMind] Fetched 1 articles
+2026-05-09 22:30:26 | INFO     | fetcher                   | [Cloudflare] Fetched 3 articles
+2026-05-09 22:30:26 | INFO     | fetcher                   | [Stripe] Fetched 0 articles
+2026-05-09 22:30:28 | INFO     | fetcher                   | [freeCodeCamp] Fetched 6 articles
+2026-05-09 22:30:28 | INFO     | fetcher                   | [Dev.to AI] Fetched 8 articles
+2026-05-09 22:30:28 | INFO     | fetcher                   | Fetcher done. 7 feeds OK, 0 failed. Total articles: 36
+2026-05-09 22:30:28 | INFO     | main                      | Fetcher: done in 5.7s | articles=36
+2026-05-09 22:30:28 | INFO     | main                      | Deduplicator: checking 36 articles against SQLite
+2026-05-09 22:30:28 | INFO     | deduplicator              | Deduplicator: 36 total, 31 already seen, 5 new
+2026-05-09 22:30:28 | INFO     | main                      | Deduplicator: done in 0.0s | new=5 dropped=31
+2026-05-09 22:30:28 | INFO     | main                      | Shortlister: scoring 5 articles | limit=50
+2026-05-09 22:30:28 | INFO     | main                      | Shortlister: done in 0.0s | shortlisted=5
+2026-05-09 22:30:28 | INFO     | main                      | Ranker: sending 5 articles to Ollama in one batch
+2026-05-09 22:30:28 | INFO     | ranker                    | Ranker: starting batch ranking for 5 articles
+2026-05-09 22:30:28 | INFO     | ranker                    | Ranker: batch 1/1 — 5 articles
+2026-05-09 22:30:28 | INFO     | ranker                    | Ranker: Ollama call attempt 1/2
+2026-05-09 22:30:36 | WARNING  | ranker                    | Ranker: no score returned for index 4 (Why affiliate marketers who use AI earn 10x more than those )
+2026-05-09 22:30:36 | WARNING  | ranker                    | Ranker: using heuristic fallback for all articles
+2026-05-09 22:30:36 | INFO     | ranker                    | Ranker: batch 1 done — 4/5 ranked by LLM
+2026-05-09 22:30:36 | INFO     | ranker                    | Ranker: complete in 8.2s — 4/5 by LLM, 1 by heuristic
+2026-05-09 22:30:36 | INFO     | main                      | Ranker: done in 8.2s | llm=4 heuristic=1
+2026-05-09 22:30:36 | INFO     | main                      | Pipeline stats: {'total_fetched': 36, 'total_new': 5, 'shortlisted': 5, 'llm_ranked': 4, 'top_n': 5, 'total_seen': 36}
+2026-05-09 22:30:36 | INFO     | mailer                    | Mailer: connecting to smtp.gmail.com:587
+2026-05-09 22:30:40 | INFO     | mailer                    | Mailer: ✅ email sent to 3 recipients | subject='🧠 Dev Digest — 5 articles · 09 May 2026'
+2026-05-09 22:30:40 | INFO     | deduplicator              | Deduplicator: marked 5 URLs as seen
+2026-05-09 22:30:40 | INFO     | main                      | Deduplicator: marked 5 URLs as seen in SQLite
+2026-05-09 22:30:40 | INFO     | main                      | Pipeline: finished in 17.9s
