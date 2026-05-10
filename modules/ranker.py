@@ -40,7 +40,7 @@ if not GROQ_API_KEY:
     raise ValueError("GROQ_API_KEY environment variable is not set")
 
 client = Groq(api_key=GROQ_API_KEY)
-MODEL = "mixtral-8x7b-32768"
+MODEL = "llama-3.1-8b-instant"
 MAX_RETRIES = 2
 RETRY_DELAY = 2            # seconds between retries
 

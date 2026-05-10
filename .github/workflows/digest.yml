@@ -42,6 +42,7 @@ jobs:
           DIGEST_EMAIL_TO: ${{ secrets.DIGEST_EMAIL_TO }}
           DIGEST_APP_PASSWORD: ${{ secrets.DIGEST_APP_PASSWORD }}
           GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
 
         run: |
           python main.py --days 7 --top 12
