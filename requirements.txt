@@ -4,3 +4,4 @@ groq
 requests
 rich
 beautifulsoup4
+psycopg2-binary
