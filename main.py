@@ -74,7 +74,7 @@ def step_shortlist(articles: list[dict], limit: int) -> list[dict]:
 
 def step_rank(articles: list[dict]) -> list[dict]:
     from ranker import rank_articles
-    logger.info(f"Ranker: sending {len(articles)} articles to Ollama in one batch")
+    logger.info(f"Ranker: sending {len(articles)} articles to Groq in one batch")
     t = time.time()
     ranked = rank_articles(articles)
     llm_count = sum(1 for a in ranked if a.get("ranked_by") == "llm")
@@ -188,7 +188,7 @@ def main():
     # ── Step 4: LLM Rank ──────────────────────────────────────────────────────
     with Progress(SpinnerColumn(), TextColumn("{task.description}"), TimeElapsedColumn(),
                   console=console, transient=True) as prog:
-        prog.add_task(f"Ranking {len(shortlisted)} articles via Ollama (1 batch call)...")
+        prog.add_task(f"Ranking {len(shortlisted)} articles via Groq (1 batch call)...")
         t0 = time.time()
         try:
             ranked = step_rank(shortlisted)

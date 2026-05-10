@@ -156,7 +156,7 @@ def build_html(articles: list[dict], stats: dict) -> str:
 
     <!-- Footer -->
     <div style="text-align:center;padding:20px;font-size:11px;color:#9CA3AF;">
-      Built with feedparser · Ollama · SQLite · GitHub Actions<br>
+      Built with feedparser · Groq · SQLite · GitHub Actions<br>
       <a href="#" style="color:#6366F1;text-decoration:none;">Unsubscribe</a>
     </div>
 

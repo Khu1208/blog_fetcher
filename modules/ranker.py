@@ -1,7 +1,7 @@
 """
 ranker.py
 ---------
-Responsibility: Score and categorise articles using a local Ollama LLM.
+Responsibility: Score and categorise articles using Groq API LLM.
 
 KEY OPTIMISATION vs original:
   ❌ Before : 1 LLM call per article → 50 articles = 50 calls = 25-40 minutes
@@ -20,19 +20,27 @@ Fallback strategy:
 
 import json
 import logging
+import os
 import time
 from typing import Optional
 
-import requests
+from groq import Groq
+
+
+from dotenv import load_dotenv
+load_dotenv()
 
 from filters import score_article
 
 logger = logging.getLogger(__name__)
 
 # ── Config ─────────────────────────────────────────────────────────────────────
-OLLAMA_URL = "http://localhost:11434/api/generate"
-MODEL = "llama3"
-REQUEST_TIMEOUT = 120      # seconds — generous because we send all articles at once
+GROQ_API_KEY = os.getenv("GROQ_API_KEY")
+if not GROQ_API_KEY:
+    raise ValueError("GROQ_API_KEY environment variable is not set")
+
+client = Groq(api_key=GROQ_API_KEY)
+MODEL = "mixtral-8x7b-32768"
 MAX_RETRIES = 2
 RETRY_DELAY = 2            # seconds between retries
 
@@ -161,29 +169,28 @@ def _heuristic_fallback(articles: list[dict]) -> list[dict]:
     return result
 
 
-# ── Ollama caller ──────────────────────────────────────────────────────────────
+# ── Groq caller ────────────────────────────────────────────────────────────────
 
-def _call_ollama(prompt: str) -> Optional[str]:
+def _call_groq(prompt: str) -> Optional[str]:
     """
-    Send prompt to Ollama, return raw response text.
+    Send prompt to Groq API, return raw response text.
     Returns None on complete failure after retries.
     """
     for attempt in range(1, MAX_RETRIES + 1):
         try:
-            logger.info(f"Ranker: Ollama call attempt {attempt}/{MAX_RETRIES}")
-            resp = requests.post(
-                OLLAMA_URL,
-                json={"model": MODEL, "prompt": prompt, "stream": False},
-                timeout=REQUEST_TIMEOUT,
+            logger.info(f"Ranker: Groq call attempt {attempt}/{MAX_RETRIES}")
+            message = client.chat.completions.create(
+                model=MODEL,
+                messages=[
+                    {
+                        "role": "user",
+                        "content": prompt,
+                    }
+                ],
             )
-            resp.raise_for_status()
-            return resp.json()["response"]
+            return message.choices[0].message.content
 
-        except requests.exceptions.ConnectionError:
-            logger.error("Ranker: Ollama not reachable — is it running? (ollama serve)")
-            return None   # no point retrying if server is down
-
-        except requests.RequestException as e:
+        except Exception as e:
             logger.warning(f"Ranker: attempt {attempt} failed — {e}")
             if attempt < MAX_RETRIES:
                 time.sleep(RETRY_DELAY * attempt)
@@ -195,7 +202,7 @@ def _call_ollama(prompt: str) -> Optional[str]:
 
 def rank_articles(articles: list[dict]) -> list[dict]:
     """
-    Score and categorise a list of articles using ONE batched Ollama call.
+    Score and categorise a list of articles using ONE batched Groq call.
 
     Args:
         articles: list of Article dicts (from fetcher → deduplicator → shortlister)
@@ -226,10 +233,10 @@ def rank_articles(articles: list[dict]) -> list[dict]:
         logger.info(f"Ranker: batch {batch_num}/{total_batches} — {len(batch)} articles")
 
         prompt = _build_batch_prompt(batch)
-        raw_response = _call_ollama(prompt)
+        raw_response = _call_groq(prompt)
 
         if raw_response is None:
-            # Ollama completely unavailable — fallback whole batch
+            # Groq call failed — fallback whole batch
             all_ranked.extend(_heuristic_fallback(batch))
             continue
 

@@ -1,0 +1,47 @@
+name: Dev Digest
+
+on:
+  schedule:
+    # Runs twice daily (UTC)
+    - cron: "0 3,15 * * *"
+
+  workflow_dispatch:
+
+jobs:
+  run-digest:
+    runs-on: ubuntu-latest
+
+    steps:
+      # ─────────────────────────────
+      # Checkout repository
+      # ─────────────────────────────
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # ─────────────────────────────
+      # Setup Python
+      # ─────────────────────────────
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      # ─────────────────────────────
+      # Install dependencies
+      # ─────────────────────────────
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt
+
+      # ─────────────────────────────
+      # Run digest pipeline
+      # ─────────────────────────────
+      - name: Run digest
+        env:
+          DIGEST_EMAIL_FROM: ${{ secrets.DIGEST_EMAIL_FROM }}
+          DIGEST_EMAIL_TO: ${{ secrets.DIGEST_EMAIL_TO }}
+          DIGEST_APP_PASSWORD: ${{ secrets.DIGEST_APP_PASSWORD }}
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+
+        run: |
+          python main.py --days 7 --top 12

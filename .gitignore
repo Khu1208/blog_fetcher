@@ -1,0 +1,46 @@
+# ─────────────────────────────
+# Python
+# ─────────────────────────────
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Virtual environments
+venv/
+.envs/
+fetcher/
+
+# macOS
+.DS_Store
+
+# VSCode
+.vscode/
+
+# PyCharm
+.idea/
+
+# Logs
+*.log
+
+# SQLite database
+data/digest.db
+*.sqlite3
+
+# Environment secrets
+.env
+
+# Temporary/cache files
+.cache/
+.pytest_cache/
+
+# Rich / notebook outputs
+.ipynb_checkpoints/
+
+# Coverage
+.coverage
+htmlcov/
+
+# Build artifacts
+dist/
+build/
